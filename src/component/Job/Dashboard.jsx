@@ -6,6 +6,8 @@ import { Context } from "../../main";
 import api from "../../api/axios";
 
 
+
+
 export default function Dashboard() {
   const { user } = useContext(Context);
   const [salarySlips, setSalarySlips] = useState([]);

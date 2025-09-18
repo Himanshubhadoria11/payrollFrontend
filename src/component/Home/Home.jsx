@@ -6,7 +6,6 @@ import Testimonial from "./Testimonial";
 
 import { Navigate } from "react-router-dom";
 import { Context } from "../../main";
-import api from "../../api/axios";
 
 
 

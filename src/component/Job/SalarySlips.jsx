@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import api from "../../api/axios";
 
 
+
 export default function SalarySlips() {
   const [slips, setSlips] = useState([]);
   const [editingSlip, setEditingSlip] = useState(null);

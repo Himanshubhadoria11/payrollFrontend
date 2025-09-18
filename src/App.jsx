@@ -15,7 +15,8 @@ import SalarySlips from './component/Job/SalarySlips';
 import ExpenseForm from './component/Job/ExpenseForm';
 import ExpenseList from './component/Job/ExpenseList';
 import Dashboard from './component/Job/Dashboard';
-import api from "../../api/axios";
+import api from './api/axios';
+
 
 
 

@@ -14,7 +14,7 @@ function Navbar() {
     const handleLogout = async () => {
       try {
         const response = await axios.get(
-          "/api/logout",
+         `${import.meta.env.VITE_API_BASE_URL}/logout` ,
   
         );
         toast.success(response.data.message);
