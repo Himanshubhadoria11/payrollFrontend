@@ -15,6 +15,7 @@ import SalarySlips from './component/Job/SalarySlips';
 import ExpenseForm from './component/Job/ExpenseForm';
 import ExpenseList from './component/Job/ExpenseList';
 import Dashboard from './component/Job/Dashboard';
+import api from "../../api/axios";
 
 
 
@@ -24,8 +25,8 @@ function App() {
 const fetchUser = async () => {
  
    try {
-     const {data} = await axios.get(
-      "api/getUser"
+     const {data} = await api.get(
+     `${import.meta.env.VITE_API_BASE_URL}/getUser` 
     );
     console.log(data)
     setUser(data);
