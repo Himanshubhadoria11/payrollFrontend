@@ -5,7 +5,7 @@ import { Link, Navigate } from "react-router-dom";
 import { Context } from "../../main";
 import toast from "react-hot-toast";
 import axios from "axios";
-import api from "../api/axios";
+import api from "../../api/axios";
 
 
 function Register() {

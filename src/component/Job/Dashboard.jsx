@@ -3,7 +3,7 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Context } from "../../main";
-import api from "../api/axios";
+import api from "../../api/axios";
 
 
 export default function Dashboard() {

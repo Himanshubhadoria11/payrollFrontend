@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import api from "../api/axios";
+import api from "../../api/axios";
 
 const AboutImage = ({ src, className, style }) => (
   <div className={`overflow-hidden ${className}`}>

@@ -183,7 +183,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import api from "../api/axios";
+import api from "../../api/axios";
 
 
 export default function HeroCarousel() {

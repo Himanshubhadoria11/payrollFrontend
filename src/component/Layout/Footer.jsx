@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Context } from '../../main';
 import { useNavigate } from 'react-router-dom';
-import api from "../api/axios";
+import api from "../../api/axios";
 
 
 function Footer() {
