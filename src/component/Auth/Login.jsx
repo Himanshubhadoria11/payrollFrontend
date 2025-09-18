@@ -18,7 +18,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/login", { email, password, role },
+      const { data } = await axios.post(  `${import.meta.env.VITE_API_BASE_URL}/login`, { email, password, role },
   { withCredentials: true });
       toast.success(data.message);
       setEmail("");
