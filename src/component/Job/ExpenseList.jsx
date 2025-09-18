@@ -13,7 +13,7 @@ export default function ExpenseList() {
     // Define async function inside useEffect
     const fetchExpenses = async () => {
       try {
-        const res = await axios.get("/api/expenses", { withCredentials: true });
+        const res = await api.get(`${import.meta.env.VITE_API_BASE_URL}/expenses`, { withCredentials: true });
         setExpenses(res.data);
       } catch (err) {
         console.error("Failed to fetch expenses:", err);
