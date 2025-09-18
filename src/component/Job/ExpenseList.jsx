@@ -3,6 +3,8 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../api/axios";
+
 
 export default function ExpenseList() {
   const [expenses, setExpenses] = useState([]);

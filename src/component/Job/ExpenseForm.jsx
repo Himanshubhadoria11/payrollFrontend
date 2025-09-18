@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Context } from "../../main";
+import api from "../api/axios";
+
 
 export default function ExpenseForm({ fetchExpenses }) {
   const { user } = useContext(Context);
@@ -39,33 +41,7 @@ export default function ExpenseForm({ fetchExpenses }) {
   return (
    
      
-    // <form onSubmit={handleSubmit} className="space-y-2">
-    //   <input
-    //     name="month"
-    //     placeholder="Month (e.g., September 2025)"
-    //     value={form.month}
-    //     onChange={handleChange}
-    //     required
-    //   />
-    //   <input
-    //     name="description"
-    //     placeholder="Expense Description"
-    //     value={form.description}
-    //     onChange={handleChange}
-    //     required
-    //   />
-    //   <input
-    //     name="amount"
-    //     type="number"
-    //     placeholder="Amount"
-    //     value={form.amount}
-    //     onChange={handleChange}
-    //     required
-    //   />
-    //   <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
-    //     Add Expense
-    //   </button>
-    // </form>
+    
   
 
 <form 

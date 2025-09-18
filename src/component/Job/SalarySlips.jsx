@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../api/axios";
+
 
 export default function SalarySlips() {
   const [slips, setSlips] = useState([]);

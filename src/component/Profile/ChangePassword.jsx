@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import api from "../api/axios";
+
 
 const ChangePassword = () => {
     const [passwords, setPasswords] = useState({ currentPassword: "", newPassword: "", confirmPassword: "" });

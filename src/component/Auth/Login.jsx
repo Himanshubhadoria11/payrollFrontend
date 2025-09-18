@@ -4,6 +4,9 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import api from "../api/axios";
+
+
 
 function Login() {
   const [email, setEmail] = useState("");

@@ -3,6 +3,8 @@ import { Context } from '../../main';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../api/axios";
+
 
 function Navbar() {
     const [show, setShow]=useState(false);
