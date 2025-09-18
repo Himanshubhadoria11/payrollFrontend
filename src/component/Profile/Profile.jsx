@@ -21,7 +21,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/getUser`);
+        const response = await api.get( '/getUser');
         setProfileData(response.data);
         setName(response.data.name);
         setEmail(response.data.email);
@@ -39,7 +39,7 @@ const Profile = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post( `${import.meta.env.VITE_API_BASE_URL}/updateprofile/${id}`, { name, email });
+      const response = await api.post( '/updateprofile/${id}', { name, email });
       alert(response.data.message || 'Profile updated successfully');
       setProfileData((prevData) => ({ ...prevData, name, email }));
     } catch (error) {
@@ -53,7 +53,7 @@ const Profile = () => {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/changepassword/${id}`, {
+      const response = await axios.post('/changepassword/${id}', {
         currentPassword,
         newPassword,
       });

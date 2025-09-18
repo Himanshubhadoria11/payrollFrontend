@@ -16,7 +16,7 @@ const ChangePassword = () => {
             alert("New passwords do not match!");
             return;
         }
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/change-password`, {
+        fetch('/change-password', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

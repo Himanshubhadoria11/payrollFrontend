@@ -19,7 +19,7 @@ export default function SalarySlips() {
   // Fetch all salary slips
   const fetchSlips = async () => {
     try {
-      const res = await api.get(`${import.meta.env.VITE_API_BASE_URL}/salary-slips`, {
+      const res = await api.get('/salary-slips', {
         withCredentials: true,
       });
       setSlips(res.data);
@@ -51,13 +51,13 @@ export default function SalarySlips() {
 
       if (editingSlip) {
         await api.put(
-          `${import.meta.env.VITE_API_BASE_URL}/salary-slips/${editingSlip._id}`,
+          '/salary-slips/${editingSlip._id}',
           payload,
           { withCredentials: true }
         );
         toast.success("Salary slip updated!");
       } else {
-        await api.post( `${import.meta.env.VITE_API_BASE_URL}/salary-slips`, payload, {
+        await api.post( '/salary-slips', payload, {
           withCredentials: true,
         });
         toast.success("Salary slip added!");
@@ -82,7 +82,7 @@ export default function SalarySlips() {
   const deleteSlip = async (id) => {
   if (!window.confirm("Delete this slip?")) return;
   try {
-    await api.delete(`${import.meta.env.VITE_API_BASE_URL}/salary-slips/${id}`, {
+    await api.delete('/salary-slips/${id}', {
       withCredentials: true, // if your backend requires cookies/auth
     });
     toast.success("Salary slip deleted!");

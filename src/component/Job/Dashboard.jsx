@@ -18,7 +18,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchSalarySlips = async () => {
       try {
-        const res = await api.get(`${import.meta.env.VITE_API_BASE_URL}/salary-slips`, { withCredentials: true });
+        const res = await api.get('/salary-slips', { withCredentials: true });
         setSalarySlips(Array.isArray(res.data) ? res.data : res.data.slips || []);
       } catch (err) {
         console.error("Failed to fetch salary slips:", err);
@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     const fetchExpenses = async () => {
       try {
-        const res = await api.get( `${import.meta.env.VITE_API_BASE_URL}/expenses`, { withCredentials: true });
+        const res = await api.get( '/expenses', { withCredentials: true });
         setExpenses(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Failed to fetch expenses:", err);
