@@ -18,7 +18,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("api/login", { email, password, role });
+      const { data } = await axios.post("/api/login", { email, password, role });
       toast.success(data.message);
       setEmail("");
       setPassword("");
