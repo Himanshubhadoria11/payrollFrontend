@@ -28,7 +28,7 @@ function Register() {
         role,
         password,
         confirmpassword,
-      });
+      },{ withCredentials: true });
       toast.success(data.message);
       setName("");
       setEmail("");
