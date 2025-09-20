@@ -13,12 +13,13 @@ export default defineConfig({
         
       },
     },
-  }
+     allowedHosts: ['.onrender.com'],
+  },
 
-// preview: {
-//     host: "0.0.0.0",                        // required for Render
-//     port: process.env.PORT || 5173,         // use Render's port
-//     allowedHosts: ["payrollfrontend.onrender.com"] // whitelist your domain
-//   }
+preview: {
+    host: "0.0.0.0",                        // required for Render
+    port: process.env.PORT || 5173,         // use Render's port
+    allowedHosts: ["payrollfrontend.onrender.com"] // whitelist your domain
+  }
  })
 
