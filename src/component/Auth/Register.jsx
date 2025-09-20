@@ -21,7 +21,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('/api/register', {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
         name,
         phone,
         email,
