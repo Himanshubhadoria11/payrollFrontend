@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import api from "../../api/axios";
+
 
 
 
@@ -19,7 +19,7 @@ export default function SalarySlips() {
   // Fetch all salary slips
   const fetchSlips = async () => {
     try {
-      const res = await api.get('/salary-slips', {
+      const res = await axios.get('/api/salary-slips', {
         withCredentials: true,
       });
       setSlips(res.data);
@@ -50,14 +50,14 @@ export default function SalarySlips() {
         payload.basicPay + payload.allowances - payload.deductions;
 
       if (editingSlip) {
-        await api.put(
-          '/salary-slips/${editingSlip._id}',
+        await axios.put(
+          `/api/salary-slips/${editingSlip._id}`,
           payload,
           { withCredentials: true }
         );
         toast.success("Salary slip updated!");
       } else {
-        await api.post( '/salary-slips', payload, {
+        await axios.post( '/api/salary-slips', payload, {
           withCredentials: true,
         });
         toast.success("Salary slip added!");
@@ -82,7 +82,7 @@ export default function SalarySlips() {
   const deleteSlip = async (id) => {
   if (!window.confirm("Delete this slip?")) return;
   try {
-    await api.delete('/salary-slips/${id}', {
+    await axios.delete(`/api/salary-slips/${id}`, {
       withCredentials: true, // if your backend requires cookies/auth
     });
     toast.success("Salary slip deleted!");

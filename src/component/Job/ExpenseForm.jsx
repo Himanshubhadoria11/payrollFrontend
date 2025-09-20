@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Context } from "../../main";
-import api from "../../api/axios";
+
 
 
 
@@ -23,7 +23,7 @@ export default function ExpenseForm({ fetchExpenses }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/expenses', {
+      await axios.post('/api/expenses', {
         employeeId: user._id,
         month: form.month,
         description: form.description,

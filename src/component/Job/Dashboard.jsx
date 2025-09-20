@@ -3,7 +3,7 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Context } from "../../main";
-import api from "../../api/axios";
+
 
 
 
@@ -18,7 +18,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchSalarySlips = async () => {
       try {
-        const res = await api.get('/salary-slips', { withCredentials: true });
+        const res = await axios.get('/api/salary-slips', { withCredentials: true });
         setSalarySlips(Array.isArray(res.data) ? res.data : res.data.slips || []);
       } catch (err) {
         console.error("Failed to fetch salary slips:", err);
@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     const fetchExpenses = async () => {
       try {
-        const res = await api.get( '/expenses', { withCredentials: true });
+        const res = await axios.get( '/api/expenses', { withCredentials: true });
         setExpenses(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Failed to fetch expenses:", err);
@@ -139,6 +139,7 @@ export default function Dashboard() {
       <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
         <thead>
           <tr className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+             <th className="p-3 text-sm font-medium text-left">Emp_Id</th>
             <th className="p-3 text-sm font-medium text-left">Month</th>
             <th className="p-3 text-sm font-medium text-left">Basic Pay</th>
             <th className="p-3 text-sm font-medium text-left">Allowances</th>
@@ -161,6 +162,7 @@ export default function Dashboard() {
                   idx % 2 === 0 ? "bg-gray-50" : "bg-white"
                 }`}
               >
+                 <td className="p-3">{slip.employeeId}</td>
                 <td className="p-3">{slip.month}</td>
                 <td className="p-3">{slip.basicPay}</td>
                 <td className="p-3">{slip.allowances}</td>
@@ -212,6 +214,7 @@ export default function Dashboard() {
                   idx % 2 === 0 ? "bg-gray-50" : "bg-white"
                 }`}
               >
+                
                 <td className="p-3">{e.month}</td>
                 <td className="p-3">{e.description}</td>
                 <td className="p-3 font-semibold text-red-600">₹{e.amount}</td>

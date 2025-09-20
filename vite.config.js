@@ -8,17 +8,17 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:0077',
+        target: 'http://localhost:7777',
         changeOrigin: true,
         
       },
     },
-  },
-
-preview: {
-    host: "0.0.0.0",                        // required for Render
-    port: process.env.PORT || 5173,         // use Render's port
-    allowedHosts: ["payrollfrontend.onrender.com"] // whitelist your domain
   }
-})
+
+// preview: {
+//     host: "0.0.0.0",                        // required for Render
+//     port: process.env.PORT || 5173,         // use Render's port
+//     allowedHosts: ["payrollfrontend.onrender.com"] // whitelist your domain
+//   }
+ })
 

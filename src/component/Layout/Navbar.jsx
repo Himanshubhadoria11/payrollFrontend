@@ -3,7 +3,7 @@ import { Context } from '../../main';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import toast from "react-hot-toast";
-import api from "../../api/axios";
+
 
 
 function Navbar() {
@@ -14,7 +14,7 @@ function Navbar() {
     const handleLogout = async () => {
       try {
         const response = await axios.get(
-         '/logout' ,
+         '/api/logout' ,
   
         );
         toast.success(response.data.message);

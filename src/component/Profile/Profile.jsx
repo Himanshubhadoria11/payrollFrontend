@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import api from "../../api/axios";
+
 
 
 const Profile = () => {
@@ -21,7 +21,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await api.get( '/getUser');
+        const response = await axios.get( '/api/getUser');
         setProfileData(response.data);
         setName(response.data.name);
         setEmail(response.data.email);
@@ -39,7 +39,7 @@ const Profile = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post( '/updateprofile/${id}', { name, email });
+      const response = await axios.post( '/api/updateprofile/${id}', { name, email });
       alert(response.data.message || 'Profile updated successfully');
       setProfileData((prevData) => ({ ...prevData, name, email }));
     } catch (error) {
@@ -53,7 +53,7 @@ const Profile = () => {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/changepassword/${id}', {
+      const response = await axios.post('/api/changepassword/${id}', {
         currentPassword,
         newPassword,
       });

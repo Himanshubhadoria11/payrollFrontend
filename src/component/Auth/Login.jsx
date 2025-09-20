@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
-import api from "../../api/axios";
+
 
 
 
@@ -18,7 +18,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await api.post(  '/login', { email, password, role },
+      const { data } = await axios.post(  '/api/login', { email, password, role },
   { withCredentials: true });
       toast.success(data.message);
       setEmail("");

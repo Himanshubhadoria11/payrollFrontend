@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../../api/axios";
+
 
 
 const ChangePassword = () => {
@@ -16,7 +16,7 @@ const ChangePassword = () => {
             alert("New passwords do not match!");
             return;
         }
-        fetch('/change-password', {
+        fetch('/api/change-password', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
