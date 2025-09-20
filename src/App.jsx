@@ -28,7 +28,7 @@ const fetchUser = async () => {
  
    try {
      const {data} = await axios.get(
-     '/api/getUser'
+     `${import.meta.env.VITE_API_BASE_URL}/api/getUser`
     );
     console.log(data)
     setUser(data);

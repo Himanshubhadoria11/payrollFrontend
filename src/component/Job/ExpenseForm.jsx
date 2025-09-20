@@ -23,7 +23,7 @@ export default function ExpenseForm({ fetchExpenses }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/expenses', {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, {
         employeeId: user._id,
         month: form.month,
         description: form.description,
