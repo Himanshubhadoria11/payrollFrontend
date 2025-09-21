@@ -15,52 +15,7 @@ function Login() {
   
   const { isAuthorized, setIsAuthorized } = useContext(Context);
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const { data } = await axios.post(  `${import.meta.env.VITE_API_BASE_URL}/api/login`, { email, password, role },
-  // { withCredentials: true });
-  //     toast.success(data.message);
-  //     setEmail("");
-  //     setPassword("");
-  //     setRole("");
-  //     setIsAuthorized(true);
-  //   } catch (error) {
-  //     toast.error(error.response.data.message);
-  //     console.log(error);
-  //   }
-  // };
-
-// const handleLogin = async (e) => {
-//   e.preventDefault();
-//   try {
-   
-//     const token = localStorage.getItem("token");
-//     const { data } = await axios.post(
-//   `${import.meta.env.VITE_API_BASE_URL}/api/login`,
-//   { email, password, role },
-//   {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   }
-// );
-
-//     toast.success(data.message);
-
-//     // ✅ Store token
-    
-
-//     setEmail("");
-//     setPassword("");
-//     setRole("");
-//     setIsAuthorized(true);
-//   } catch (error) {
-//     toast.error(error.response?.data?.message || "Login failed");
-//     console.log(error);
-//   }
-// };
-
+  
 const handleLogin = async (e) => {
   e.preventDefault();
   try {
