@@ -41,7 +41,17 @@ const res = await axios.get(
 
     const fetchExpenses = async () => {
       try {
-        const res = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
+         const token = localStorage.getItem("token");
+
+const res = await axios.get(
+  `${import.meta.env.VITE_API_BASE_URL}/api/expenses`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+       // const res = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
         setExpenses(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Failed to fetch expenses:", err);
