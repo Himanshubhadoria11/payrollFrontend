@@ -24,22 +24,43 @@ import Dashboard from './component/Job/Dashboard';
 function App() {
   const {isAuthorized,setIsAuthorized,setUser}=useContext(Context);
 
-const fetchUser = async () => {
+// const fetchUser = async () => {
  
-   try {
-     const {data} = await axios.get(
-     `${import.meta.env.VITE_API_BASE_URL}/api/getUser`
-    );
-    console.log(data)
-    setUser(data);
-    setIsAuthorized(true);
+//    try {
+//      const {data} = await axios.get(
+//      `${import.meta.env.VITE_API_BASE_URL}/api/getUser`
+//     );
+//     console.log(data)
+//     setUser(data);
+//     setIsAuthorized(true);
  
     
-   } catch (error) {
-      setIsAuthorized(false); 
-   }
+//    } catch (error) {
+//       setIsAuthorized(false); 
+//    }
 
-}; 
+// }; 
+const fetchUser = async () => {
+  const token = localStorage.getItem("token"); // or sessionStorage
+
+  try {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/api/getUser`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(data);
+    setUser(data);
+    setIsAuthorized(true);
+  } catch (error) {
+    console.error("User fetch failed:", error);
+    setIsAuthorized(false);
+  }
+};
+
  useEffect(() => {
   
   fetchUser();
