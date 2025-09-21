@@ -77,7 +77,7 @@ try {
       email,
       role,
       password,
-      confirmPassword,
+      confirmpassword,
     },
     {
       headers: {
@@ -86,12 +86,12 @@ try {
     }
   );
 
-  toast.success(data.message);
-  // ...
-} catch (error) {
-  toast.error(error.response.data.message);
-  console.log(error);
-}
+//   toast.success(data.message);
+//   ..
+// } catch (error) {
+//   toast.error(error.response.data.message);
+//   console.log(error);
+// }
   
 
       toast.success(data.message);
@@ -102,12 +102,12 @@ try {
       setRole("");
       setconfirmpassword("");
       setIsAuthorized(true);
-    // } catch (error) {
-    //   toast.error(error.response.data.message);
-    //   console.log(error);
-    // }
+   
 
-  };
+  } catch (error) {
+  toast.error(error.response.data.message);
+  console.log(error);
+}
 
   if (isAuthorized) {
     return <Navigate to={"/"} />;
