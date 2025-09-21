@@ -20,7 +20,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    try {
+  //  try {
       // const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
       //   name,
       //   phone,
@@ -29,7 +29,7 @@ function Register() {
       //   password,
       //   confirmpassword,
       // },{ withCredentials: true });
-       const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
 //     const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
 //          name,
 //          phone,
@@ -56,18 +56,42 @@ function Register() {
 //     'Content-Type': 'application/json'
 //   }
 // });
-const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
-  name,
-  phone,
-  email,
-  role,
-  password,
-  confirmPassword,
-}, {
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
+// const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+//   name,
+//   phone,
+//   email,
+//   role,
+//   password,
+//   confirmPassword,
+// }, {
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// });
+try {
+  const { data } = await axios.post(
+    `${import.meta.env.VITE_API_BASE_URL}/api/register`,
+    {
+      name,
+      phone,
+      email,
+      role,
+      password,
+      confirmPassword,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+
+  toast.success(data.message);
+  // ...
+} catch (error) {
+  toast.error(error.response.data.message);
+  console.log(error);
+}
 
 
       toast.success(data.message);
