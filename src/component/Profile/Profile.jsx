@@ -41,7 +41,7 @@ const Profile = () => {
     try {
       //const response = await axios.post( `${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`, { name, email });
         const token = localStorage.getItem("token");
-const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`,{name,email}, {
+const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`,{name,email}, {
   headers: { Authorization: `Bearer ${token}` }
 });
       alert(response.data.message || 'Profile updated successfully');
