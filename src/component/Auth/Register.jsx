@@ -21,14 +21,30 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
-        name,
-        phone,
-        email,
-        role,
-        password,
-        confirmpassword,
-      },{ withCredentials: true });
+      // const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+      //   name,
+      //   phone,
+      //   email,
+      //   role,
+      //   password,
+      //   confirmpassword,
+      // },{ withCredentials: true });
+       const token = localStorage.getItem("token");
+    const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+         name,
+         phone,
+         email,
+         role,
+         password,
+         confirmpassword,
+       },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
       toast.success(data.message);
       setName("");
       setEmail("");

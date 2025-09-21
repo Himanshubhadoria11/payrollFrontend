@@ -34,16 +34,26 @@ function Login() {
 const handleLogin = async (e) => {
   e.preventDefault();
   try {
+    // const { data } = await axios.post(
+    //   `${import.meta.env.VITE_API_BASE_URL}/api/login`,
+    //   { email, password, role },
+    //   { withCredentials: true }
+    // );
+    const token = localStorage.getItem("token");
     const { data } = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/api/login`,
-      { email, password, role },
-      { withCredentials: true }
-    );
+  `${import.meta.env.VITE_API_BASE_URL}/api/login`,
+  { email, password, role },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
     toast.success(data.message);
 
     // ✅ Store token
-    localStorage.setItem("token", data.token);
+    
 
     setEmail("");
     setPassword("");
