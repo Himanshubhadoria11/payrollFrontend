@@ -11,31 +11,54 @@ function Navbar() {
     const {isAuthorized, setIsAuthorized,user}=useContext(Context);
      //console.log(isAuthorized)
     const navigateTo=useNavigate();
-    const handleLogout = async () => {
+//     const handleLogout = async () => {
 
-      try {
-        // const response = await axios.get(
-        //  `${import.meta.env.VITE_API_BASE_URL}/api/logout` ,
+//       try {
+//         // const response = await axios.get(
+//         //  `${import.meta.env.VITE_API_BASE_URL}/api/logout` ,
   
-        // );
-        const token = localStorage.getItem("token");
+//         // );
+//         const token = localStorage.getItem("token");
 
-const response = await axios.get(
-  `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
-        toast.success(response.data.message);
-        setIsAuthorized(false);
-        navigateTo("/login");
-      } catch (error) {
-        toast.error(error.response.data.message), setIsAuthorized(true);
+// const response = await axios.get(
+//   `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+//   {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }
+// );
+//         toast.success(response.data.message);
+//         setIsAuthorized(false);
+//         navigateTo("/login");
+//       } catch (error) {
+//         toast.error(error.response.data.message), setIsAuthorized(true);
+//       }
+//     };
+  const handleLogout = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
       }
-    };
-  
+    );
+
+    // Clear localStorage and reset state
+    localStorage.removeItem("token");
+    localStorage.removeItem("user"); // if you stored user info
+    setIsAuthorized(false);
+
+    toast.success("Logged out successfully!");
+    navigateTo("/login");
+  } catch (error) {
+    console.error(error);
+    toast.error(error?.response?.data?.message || "Logout failed");
+  }
+};
+
 
 
     return (
