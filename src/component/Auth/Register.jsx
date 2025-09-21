@@ -20,54 +20,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-  //  try {
-      // const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
-      //   name,
-      //   phone,
-      //   email,
-      //   role,
-      //   password,
-      //   confirmpassword,
-      // },{ withCredentials: true });
-      // const token = localStorage.getItem("token");
-//     const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
-//          name,
-//          phone,
-//          email,
-//          role,
-//          password,
-//          confirmpassword,
-//        },
-//   {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   }
-// );
-// const { data } =axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
-//   name,
-//    phone,
-//   email,
-//   role,
-//   password,
-//   confirmPassword,
-// }, {
-//   headers: {
-//     'Content-Type': 'application/json'
-//   }
-// });
-// const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
-//   name,
-//   phone,
-//   email,
-//   role,
-//   password,
-//   confirmPassword,
-// }, {
-//   headers: {
-//     'Content-Type': 'application/json'
-//   }
-// });
+  
 try {
   const { data } = await axios.post(
     `${import.meta.env.VITE_API_BASE_URL}/api/register`,
@@ -86,12 +39,7 @@ try {
     }
   );
 
-//   toast.success(data.message);
-//   ..
-// } catch (error) {
-//   toast.error(error.response.data.message);
-//   console.log(error);
-// }
+
   
 
       toast.success(data.message);
