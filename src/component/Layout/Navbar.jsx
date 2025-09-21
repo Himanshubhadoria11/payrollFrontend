@@ -27,10 +27,20 @@ function Navbar() {
     // };
    const handleLogout = async () => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
-      { withCredentials: true }
-    );
+    // const response = await axios.get(
+    //   `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+    //   { withCredentials: true }
+    // );
+    const token = localStorage.getItem("token");
+
+const response = await axios.get(
+  `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
     toast.success(response.data.message);
     setIsAuthorized(false);
     setUser(null);
