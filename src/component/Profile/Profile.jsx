@@ -21,7 +21,11 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/api/getUser`);
+       // const response = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/api/getUser`);
+        const token = localStorage.getItem("token");
+const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/getUser`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
         setProfileData(response.data);
         setName(response.data.name);
         setEmail(response.data.email);
@@ -57,10 +61,29 @@ const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/updatepro
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/changepassword/${id}`, {
-        currentPassword,
-        newPassword,
-      });
+      // const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/changepassword/${id}`, {
+      //  currentPassword,
+      //   newPassword,
+      // });
+      const token = localStorage.getItem("token");
+
+const res = await axios.post(
+  `${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`,
+  {
+    name,
+    email,
+    currentPassword,
+    newPassword,
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
+console.log("Profile updated:", res.data);
+
       alert(response.data.message || 'Password changed successfully');
       setCurrentPassword('');
       setNewPassword('');
