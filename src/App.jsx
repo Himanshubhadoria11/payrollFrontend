@@ -40,31 +40,62 @@ function App() {
 //    }
 
 // }; 
-const fetchUser = async () => {
-  const token = localStorage.getItem("token"); // or sessionStorage
+// const fetchUser = async () => {
+//   const token = localStorage.getItem("token"); // or sessionStorage
 
-  try {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_BASE_URL}/api/getUser`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(data);
-    setUser(data);
-    setIsAuthorized(true);
-  } catch (error) {
-    console.error("User fetch failed:", error);
-    setIsAuthorized(false);
-  }
-};
+//   try {
+//     const { data } = await axios.get(
+//       `${import.meta.env.VITE_API_BASE_URL}/api/getUser`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     console.log(data);
+//     setUser(data);
+//     setIsAuthorized(true);
+//   } catch (error) {
+//     console.error("User fetch failed:", error);
+//     setIsAuthorized(false);
+//   }
+// };
 
- useEffect(() => {
+//  useEffect(() => {
   
+//   fetchUser();
+// },[isAuthorized]);
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    setIsAuthorized(false);
+    setUser(null);
+    return;
+  }
+
+  const fetchUser = async () => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/getUser`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data);
+      setUser(data);
+      setIsAuthorized(true);
+    } catch (error) {
+      console.error("User fetch failed:", error);
+      localStorage.removeItem("token"); // clear invalid token
+      setIsAuthorized(false);
+      setUser(null);
+    }
+  };
+
   fetchUser();
-},[isAuthorized]);
+}, [isAuthorized]);
 
 
   return (
