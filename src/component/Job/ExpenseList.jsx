@@ -16,7 +16,7 @@ useEffect(() => {
       try {
        // const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
        const token = localStorage.getItem("token");
-const res = await axios.get(`${API_URL}/api/expenses`, {
+const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, {
   headers: { Authorization: `Bearer ${token}` }
 });
 
