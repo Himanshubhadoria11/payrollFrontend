@@ -44,7 +44,7 @@ function Register() {
 //     },
 //   }
 // );
-axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+const { data } =axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
   name,
    phone,
   email,
