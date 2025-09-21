@@ -67,9 +67,15 @@ const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slip
 });
         toast.success("Salary slip updated!");
       } else {
-        await axios.post( `${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, payload, {
-          withCredentials: true,
-        });
+        // await axios.post( `${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, payload, {
+        //   withCredentials: true,
+        // });
+         const token = localStorage.getItem("token");
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`,
+        payload, 
+        {
+  headers: { Authorization: `Bearer ${token}` }
+});
         toast.success("Salary slip added!");
       }
 
