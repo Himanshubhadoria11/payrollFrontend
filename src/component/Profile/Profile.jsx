@@ -40,22 +40,45 @@ const response= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/getUse
   }, []);
 
   // Handle profile update
-  const handleUpdateProfile = async (e) => {
-    e.preventDefault();
-    try {
-      //const response = await axios.post( `${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`, { name, email });
-        const token = localStorage.getItem("token");
-const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`,{name,email}, {
-  headers: { Authorization: `Bearer ${token}` }
-});
-      alert(response.data.message || 'Profile updated successfully');
-      setProfileData((prevData) => ({ ...prevData, name, email }));
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      alert(error.response?.data?.message || 'Failed to update profile');
+//   const handleUpdateProfile = async (e) => {
+//     e.preventDefault();
+//     try {
+//       //const response = await axios.post( `${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`, { name, email });
+//         const token = localStorage.getItem("token");
+// const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`,{name,email}, {
+//   headers: { Authorization: `Bearer ${token}` }
+// });
+//       alert(response.data.message || 'Profile updated successfully');
+//       setProfileData((prevData) => ({ ...prevData, name, email }));
+//     } catch (error) {
+//       console.error('Error updating profile:', error);
+//       alert(error.response?.data?.message || 'Failed to update profile');
 
-    } 
-  };
+//     } 
+//   };
+  const handleUpdateProfile = async (e) => {
+  e.preventDefault();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user?.id;
+
+  if (!id) {
+    alert("User ID is missing. Cannot update profile.");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/updateprofile/${id}`, { name, email }, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    alert(response.data.message || 'Profile updated successfully');
+    setProfileData((prevData) => ({ ...prevData, name, email }));
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    alert(error.response?.data?.message || 'Failed to update profile');
+  }
+};
+
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
