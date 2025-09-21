@@ -18,7 +18,18 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchSalarySlips = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, { withCredentials: true });
+        // const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, { withCredentials: true });
+        const token = localStorage.getItem("token");
+
+const res = await axios.get(
+  `${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
         setSalarySlips(Array.isArray(res.data) ? res.data : res.data.slips || []);
       } catch (err) {
         console.error("Failed to fetch salary slips:", err);
