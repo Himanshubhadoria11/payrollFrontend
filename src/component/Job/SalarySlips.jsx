@@ -157,125 +157,252 @@ const deleteSlip = async (id) => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Salary Slips</h1>
+    // <div className="p-6">
+    //   <h1 className="text-2xl font-bold mb-4">Salary Slips</h1>
 
-      {/* Form Section */}
-      <form onSubmit={handleSubmit} className="space-y-3 mb-6 max-w-lg">
-        <input
-          name="employeeId"
-          placeholder="Employee ID"
-          value={form.employeeId}
-          onChange={handleChange}
-          disabled={!!editingSlip}
-          required
-          className="border p-2 w-full"
-        />
-        <input
-          name="month"
-          placeholder="Month (e.g., September-2025)"
-          value={form.month}
-          onChange={handleChange}
-          disabled={!!editingSlip}
-          required
-          className="border p-2 w-full"
-        />
-        <input
-          name="basicPay"
-          type="number"
-          placeholder="Basic Pay"
-          value={form.basicPay}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-        <input
-          name="allowances"
-          type="number"
-          placeholder="Allowances"
-          value={form.allowances}
-          onChange={handleChange}
-          className="border p-2 w-full"
-        />
-        <input
-          name="deductions"
-          type="number"
-          placeholder="Deductions"
-          value={form.deductions}
-          onChange={handleChange}
-          className="border p-2 w-full"
-        />
+    //   {/* Form Section */}
+    //   <form onSubmit={handleSubmit} className="space-y-3 mb-6 max-w-lg">
+    //     <input
+    //       name="employeeId"
+    //       placeholder="Employee ID"
+    //       value={form.employeeId}
+    //       onChange={handleChange}
+    //       disabled={!!editingSlip}
+    //       required
+    //       className="border p-2 w-full"
+    //     />
+    //     <input
+    //       name="month"
+    //       placeholder="Month (e.g., September-2025)"
+    //       value={form.month}
+    //       onChange={handleChange}
+    //       disabled={!!editingSlip}
+    //       required
+    //       className="border p-2 w-full"
+    //     />
+    //     <input
+    //       name="basicPay"
+    //       type="number"
+    //       placeholder="Basic Pay"
+    //       value={form.basicPay}
+    //       onChange={handleChange}
+    //       required
+    //       className="border p-2 w-full"
+    //     />
+    //     <input
+    //       name="allowances"
+    //       type="number"
+    //       placeholder="Allowances"
+    //       value={form.allowances}
+    //       onChange={handleChange}
+    //       className="border p-2 w-full"
+    //     />
+    //     <input
+    //       name="deductions"
+    //       type="number"
+    //       placeholder="Deductions"
+    //       value={form.deductions}
+    //       onChange={handleChange}
+    //       className="border p-2 w-full"
+    //     />
 
-        <div className="flex gap-2">
-          <button
-            type="submit"
-            className={`px-4 py-2 rounded text-white ${
-              editingSlip ? "bg-blue-600" : "bg-green-600"
-            }`}
-          >
-            {editingSlip ? "Update Slip" : "Add Slip"}
-          </button>
-          {editingSlip && (
-            <button
-              type="button"
-              onClick={cancelEdit}
-              className="px-4 py-2 rounded bg-gray-500 text-white"
-            >
-              Cancel
-            </button>
-          )}
-        </div>
-      </form>
+    //     <div className="flex gap-2">
+    //       <button
+    //         type="submit"
+    //         className={`px-4 py-2 rounded text-white ${
+    //           editingSlip ? "bg-blue-600" : "bg-green-600"
+    //         }`}
+    //       >
+    //         {editingSlip ? "Update Slip" : "Add Slip"}
+    //       </button>
+    //       {editingSlip && (
+    //         <button
+    //           type="button"
+    //           onClick={cancelEdit}
+    //           className="px-4 py-2 rounded bg-gray-500 text-white"
+    //         >
+    //           Cancel
+    //         </button>
+    //       )}
+    //     </div>
+    //   </form>
 
-      {/* Table Section */}
-      <table className="w-full border border-gray-300">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">Employee ID</th>
-            <th className="border p-2">Month</th>
-            <th className="border p-2">Basic Pay</th>
-            <th className="border p-2">Allowances</th>
-            <th className="border p-2">Deductions</th>
-            <th className="border p-2">Net Salary</th>
-            <th className="border p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {slips.map((slip) => (
-            <tr key={slip._id}>
-              <td className="border p-2">{slip.employeeId}</td>
-              <td className="border p-2">{slip.month}</td>
-              <td className="border p-2">{slip.basicPay}</td>
-              <td className="border p-2">{slip.allowances}</td>
-              <td className="border p-2">{slip.deductions}</td>
-              <td className="border p-2">{slip.netSalary}</td>
-              <td className="border p-2">
+    //   {/* Table Section */}
+    //   <table className="w-full border border-gray-300">
+    //     <thead>
+    //       <tr className="bg-gray-200">
+    //         <th className="border p-2">Employee ID</th>
+    //         <th className="border p-2">Month</th>
+    //         <th className="border p-2">Basic Pay</th>
+    //         <th className="border p-2">Allowances</th>
+    //         <th className="border p-2">Deductions</th>
+    //         <th className="border p-2">Net Salary</th>
+    //         <th className="border p-2">Actions</th>
+    //       </tr>
+    //     </thead>
+    //     <tbody>
+    //       {slips.map((slip) => (
+    //         <tr key={slip._id}>
+    //           <td className="border p-2">{slip.employeeId}</td>
+    //           <td className="border p-2">{slip.month}</td>
+    //           <td className="border p-2">{slip.basicPay}</td>
+    //           <td className="border p-2">{slip.allowances}</td>
+    //           <td className="border p-2">{slip.deductions}</td>
+    //           <td className="border p-2">{slip.netSalary}</td>
+    //           <td className="border p-2">
+    //             <button
+    //               onClick={() => startEdit(slip)}
+    //               className="bg-yellow-500 text-white px-2 py-1 rounded-full mr-2"
+    //             >
+    //               Edit
+    //             </button>
+               
+    //             <button
+    //               onClick={() => deleteSlip(slip._id)}
+    //               className="bg-red-600 text-white px-2 py-1 rounded-4xl"
+    //             >
+    //               Delete
+    //             </button>
+    //           </td>
+    //         </tr>
+    //       ))}
+    //       {slips.length === 0 && (
+    //         <tr>
+    //           <td colSpan="7" className="text-center p-4">
+    //             No salary slips found
+    //           </td>
+    //         </tr>
+    //       )}
+    //     </tbody>
+    //   </table>
+    // </div>
+    <div className="p-4 md:p-6">
+  <h1 className="text-2xl font-bold mb-4">Salary Slips</h1>
+
+  {/* Form Section */}
+  <form
+    onSubmit={handleSubmit}
+    className="space-y-3 mb-6 w-full max-w-lg"
+  >
+    <input
+      name="employeeId"
+      placeholder="Employee ID"
+      value={form.employeeId}
+      onChange={handleChange}
+      disabled={!!editingSlip}
+      required
+      className="border p-2 w-full rounded"
+    />
+    <input
+      name="month"
+      placeholder="Month (e.g., September-2025)"
+      value={form.month}
+      onChange={handleChange}
+      disabled={!!editingSlip}
+      required
+      className="border p-2 w-full rounded"
+    />
+    <input
+      name="basicPay"
+      type="number"
+      placeholder="Basic Pay"
+      value={form.basicPay}
+      onChange={handleChange}
+      required
+      className="border p-2 w-full rounded"
+    />
+    <input
+      name="allowances"
+      type="number"
+      placeholder="Allowances"
+      value={form.allowances}
+      onChange={handleChange}
+      className="border p-2 w-full rounded"
+    />
+    <input
+      name="deductions"
+      type="number"
+      placeholder="Deductions"
+      value={form.deductions}
+      onChange={handleChange}
+      className="border p-2 w-full rounded"
+    />
+
+    {/* Buttons */}
+    <div className="flex flex-col sm:flex-row gap-2">
+      <button
+        type="submit"
+        className={`px-4 py-2 rounded text-white w-full sm:w-auto ${
+          editingSlip ? "bg-blue-600" : "bg-green-600"
+        }`}
+      >
+        {editingSlip ? "Update Slip" : "Add Slip"}
+      </button>
+      {editingSlip && (
+        <button
+          type="button"
+          onClick={cancelEdit}
+          className="px-4 py-2 rounded bg-gray-500 text-white w-full sm:w-auto"
+        >
+          Cancel
+        </button>
+      )}
+    </div>
+  </form>
+
+  {/* Table Section */}
+  <div className="overflow-x-auto">
+    <table className="w-full border border-gray-300 text-sm">
+      <thead>
+        <tr className="bg-gray-200">
+          <th className="border p-2">Employee ID</th>
+          <th className="border p-2">Month</th>
+          <th className="border p-2">Basic Pay</th>
+          <th className="border p-2">Allowances</th>
+          <th className="border p-2">Deductions</th>
+          <th className="border p-2">Net Salary</th>
+          <th className="border p-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {slips.map((slip) => (
+          <tr key={slip._id}>
+            <td className="border p-2">{slip.employeeId}</td>
+            <td className="border p-2">{slip.month}</td>
+            <td className="border p-2">{slip.basicPay}</td>
+            <td className="border p-2">{slip.allowances}</td>
+            <td className="border p-2">{slip.deductions}</td>
+            <td className="border p-2">{slip.netSalary}</td>
+            <td className="border p-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => startEdit(slip)}
-                  className="bg-yellow-500 text-white px-2 py-1 rounded-full mr-2"
+                  className="bg-yellow-500 text-white px-3 py-1 rounded text-sm"
                 >
                   Edit
                 </button>
-               
                 <button
                   onClick={() => deleteSlip(slip._id)}
-                  className="bg-red-600 text-white px-2 py-1 rounded-4xl"
+                  className="bg-red-600 text-white px-3 py-1 rounded text-sm"
                 >
                   Delete
                 </button>
-              </td>
-            </tr>
-          ))}
-          {slips.length === 0 && (
-            <tr>
-              <td colSpan="7" className="text-center p-4">
-                No salary slips found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+              </div>
+            </td>
+          </tr>
+        ))}
+        {slips.length === 0 && (
+          <tr>
+            <td colSpan="7" className="text-center p-4">
+              No salary slips found
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 }
 
