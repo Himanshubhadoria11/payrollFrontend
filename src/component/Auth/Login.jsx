@@ -31,39 +31,61 @@ function Login() {
   //   }
   // };
 
+// const handleLogin = async (e) => {
+//   e.preventDefault();
+//   try {
+   
+//     const token = localStorage.getItem("token");
+//     const { data } = await axios.post(
+//   `${import.meta.env.VITE_API_BASE_URL}/api/login`,
+//   { email, password, role },
+//   {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }
+// );
+
+//     toast.success(data.message);
+
+//     // ✅ Store token
+    
+
+//     setEmail("");
+//     setPassword("");
+//     setRole("");
+//     setIsAuthorized(true);
+//   } catch (error) {
+//     toast.error(error.response?.data?.message || "Login failed");
+//     console.log(error);
+//   }
+// };
 const handleLogin = async (e) => {
   e.preventDefault();
   try {
-    // const { data } = await axios.post(
-    //   `${import.meta.env.VITE_API_BASE_URL}/api/login`,
-    //   { email, password, role },
-    //   { withCredentials: true }
-    // );
-    const token = localStorage.getItem("token");
     const { data } = await axios.post(
-  `${import.meta.env.VITE_API_BASE_URL}/api/login`,
-  { email, password, role },
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
+      `${import.meta.env.VITE_API_BASE_URL}/api/login`,
+      { email, password, role }
+    );
 
+    // Save token & user info
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    setIsAuthorized(true); // Update context
+    // Optionally, you can have setUser if you use user state in context
     toast.success(data.message);
 
-    // ✅ Store token
-    
-
+    // Clear form
     setEmail("");
     setPassword("");
     setRole("");
-    setIsAuthorized(true);
   } catch (error) {
-    toast.error(error.response?.data?.message || "Login failed");
-    console.log(error);
+    console.error(error);
+    toast.error(error?.response?.data?.message || "Login failed");
   }
 };
+
 
   if (isAuthorized) {
     return <Navigate to={"/"} />;
