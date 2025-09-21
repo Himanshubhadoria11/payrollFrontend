@@ -95,16 +95,37 @@ const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slip
   };
 
 
-  const deleteSlip = async (id) => {
+//   const deleteSlip = async (id) => {
+//   if (!window.confirm("Delete this slip?")) return;
+//   try {
+//     // await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
+//     //   withCredentials: true, // if your backend requires cookies/auth
+//     // });
+//     const token = localStorage.getItem("token");
+//      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
+//   headers: { Authorization: `Bearer ${token}` }
+// });
+//     toast.success("Salary slip deleted!");
+//     fetchSlips(); // refresh list
+//   } catch (err) {
+//     console.error("Delete failed:", err);
+//     toast.error("Failed to delete salary slip");
+//   }
+// };
+
+const deleteSlip = async (id) => {
   if (!window.confirm("Delete this slip?")) return;
+
+  const token = localStorage.getItem("token"); // declare token here
+  if (!token) {
+    toast.error("No token found. Please login.");
+    return;
+  }
+
   try {
-    // await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
-    //   withCredentials: true, // if your backend requires cookies/auth
-    // });
-    const token = localStorage.getItem("token");
-     await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
-  headers: { Authorization: `Bearer ${token}` }
-});
+    await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     toast.success("Salary slip deleted!");
     fetchSlips(); // refresh list
   } catch (err) {
@@ -112,7 +133,6 @@ const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slip
     toast.error("Failed to delete salary slip");
   }
 };
-
 
   const startEdit = (slip) => {
     setEditingSlip(slip);
