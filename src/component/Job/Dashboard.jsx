@@ -65,8 +65,9 @@ const fetchExpenses = async () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      console.log("No token found. Redirecting to login...");
-      return window.location.href = "/login";
+      console.log("No token found.");
+      setExpenses([]); // just clear expenses, no redirect
+      return;
     }
 
     const res = await axios.get(
@@ -75,23 +76,19 @@ const fetchExpenses = async () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        // Uncomment if backend uses cookies instead:
-        // withCredentials: true
+        // withCredentials: true, // if backend uses cookies
       }
     );
 
     setExpenses(Array.isArray(res.data) ? res.data : []);
   } catch (err) {
     console.error("Failed to fetch expenses:", err);
-    if (err.response?.status === 401) {
-      // Token expired or invalid
-      window.location.href = "/login";
-    }
-    setExpenses([]);
+    setExpenses([]); // clear expenses if error occurs
   } finally {
     setLoadingExpenses(false);
   }
 };
+
 
     fetchSalarySlips();
     fetchExpenses();
