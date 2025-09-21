@@ -54,11 +54,17 @@ const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slip
         payload.basicPay + payload.allowances - payload.deductions;
 
       if (editingSlip) {
-        await axios.put(
-          `${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${editingSlip._id}`,
-          payload,
-          { withCredentials: true }
-        );
+        // await axios.put(
+        //   `${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${editingSlip._id}`,
+        //   payload,
+        //   { withCredentials: true }
+        // );
+        const token = localStorage.getItem("token");
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${editingSlip._id}`,
+        payload, 
+        {
+  headers: { Authorization: `Bearer ${token}` }
+});
         toast.success("Salary slip updated!");
       } else {
         await axios.post( `${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, payload, {
