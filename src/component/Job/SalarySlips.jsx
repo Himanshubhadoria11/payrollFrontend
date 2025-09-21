@@ -92,9 +92,12 @@ const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slip
   const deleteSlip = async (id) => {
   if (!window.confirm("Delete this slip?")) return;
   try {
-    await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
-      withCredentials: true, // if your backend requires cookies/auth
-    });
+    // await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
+    //   withCredentials: true, // if your backend requires cookies/auth
+    // });
+     await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
     toast.success("Salary slip deleted!");
     fetchSlips(); // refresh list
   } catch (err) {
