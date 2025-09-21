@@ -44,9 +44,21 @@ function Register() {
 //     },
 //   }
 // );
-const { data } =axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+// const { data } =axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+//   name,
+//    phone,
+//   email,
+//   role,
+//   password,
+//   confirmPassword,
+// }, {
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// });
+const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
   name,
-   phone,
+  phone,
   email,
   role,
   password,
