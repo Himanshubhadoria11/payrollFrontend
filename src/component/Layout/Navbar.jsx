@@ -11,19 +11,37 @@ function Navbar() {
     const {isAuthorized, setIsAuthorized,user}=useContext(Context);
      //console.log(isAuthorized)
     const navigateTo=useNavigate();
-    const handleLogout = async () => {
-      try {
-        const response = await axios.get(
-         `${import.meta.env.VITE_API_BASE_URL}/api/logout` ,
+    // const handleLogout = async () => {
+
+    //   try {
+    //     const response = await axios.get(
+    //      `${import.meta.env.VITE_API_BASE_URL}/api/logout` ,
   
-        );
-        toast.success(response.data.message);
-        setIsAuthorized(false);
-        navigateTo("/login");
-      } catch (error) {
-        toast.error(error.response.data.message), setIsAuthorized(true);
-      }
-    };
+    //     );
+    //     toast.success(response.data.message);
+    //     setIsAuthorized(false);
+    //     navigateTo("/login");
+    //   } catch (error) {
+    //     toast.error(error.response.data.message), setIsAuthorized(true);
+    //   }
+    // };
+    const handleLogout = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+      { withCredentials: true }
+    );
+    toast.success(response.data.message);
+    setIsAuthorized(false);
+    setUser(null);
+    navigateTo("/login");
+  } catch (error) {
+    toast.error(error?.response?.data?.message || "Logout failed");
+    setIsAuthorized(false);
+    setUser(null);
+  }
+};
+
     return (
      <>
       {/* <nav className={`navbar navbar-expand-lg bg-amber-800 navbar-light  shadow sticky-top p-0 ${isAuthorized ? "navbarShow" : "navbarHide"}`}>
