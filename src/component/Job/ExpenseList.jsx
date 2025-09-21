@@ -10,19 +10,37 @@ import axios from "axios";
 export default function ExpenseList() {
   const [expenses, setExpenses] = useState([]);
 
-  useEffect(() => {
-    // Define async function inside useEffect
-    const fetchExpenses = async () => {
-      try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
-        setExpenses(res.data);
-      } catch (err) {
-        console.error("Failed to fetch expenses:", err);
-      }
-    };
+// useEffect(() => {
+//     // Define async function inside useEffect
+//     const fetchExpenses = async () => {
+//       try {
+//         const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
+//         setExpenses(res.data);
+//       } catch (err) {
+//         console.error("Failed to fetch expenses:", err);
+//       }
+//     };
 
-    fetchExpenses();
-  }, []); // empty dependency → runs once on mount
+//     fetchExpenses();
+//   }, []);   // empty dependency → runs once on mount
+useEffect(() => {
+  const fetchExpenses = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
+      setExpenses(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      if (err.response?.status === 401) {
+        console.error("Unauthorized: Please log in");
+        // Optional: redirect to login
+      } else {
+        console.error("Failed to fetch expenses:", err.response?.data || err.message);
+      }
+      setExpenses([]);
+    }
+  };
+
+  fetchExpenses();
+}, []); // empty dependency array runs once on mount
 
   return (
     
