@@ -75,6 +75,7 @@ useEffect(() => {
 
   const fetchUser = async () => {
     try {
+      const token = localStorage.getItem("token");
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_BASE_URL}/api/getUser`,
         {
