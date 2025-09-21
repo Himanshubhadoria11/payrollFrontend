@@ -23,12 +23,25 @@ export default function ExpenseForm({ fetchExpenses }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, {
-        employeeId: user._id,
-        month: form.month,
-        description: form.description,
-        amount: Number(form.amount),
-      }, { withCredentials: true });
+      const token = localStorage.getItem("token"); // or wherever you store it
+
+await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, {
+  employeeId: user._id,
+  month: form.month,
+  description: form.description,
+  amount: Number(form.amount),
+}, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+      // await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/expenses`, {
+      //   employeeId: user._id,
+      //   month: form.month,
+      //   description: form.description,
+      //   amount: Number(form.amount),
+      // }, { withCredentials: true });
 
       alert("Expense added successfully!");
       setForm({ month: "", description: "", amount: "" });
