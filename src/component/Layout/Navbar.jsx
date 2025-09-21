@@ -11,27 +11,14 @@ function Navbar() {
     const {isAuthorized, setIsAuthorized,user}=useContext(Context);
      //console.log(isAuthorized)
     const navigateTo=useNavigate();
-    // const handleLogout = async () => {
+    const handleLogout = async () => {
 
-    //   try {
-    //     const response = await axios.get(
-    //      `${import.meta.env.VITE_API_BASE_URL}/api/logout` ,
+      try {
+        // const response = await axios.get(
+        //  `${import.meta.env.VITE_API_BASE_URL}/api/logout` ,
   
-    //     );
-    //     toast.success(response.data.message);
-    //     setIsAuthorized(false);
-    //     navigateTo("/login");
-    //   } catch (error) {
-    //     toast.error(error.response.data.message), setIsAuthorized(true);
-    //   }
-    // };
-   const handleLogout = async () => {
-  try {
-    // const response = await axios.get(
-    //   `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
-    //   { withCredentials: true }
-    // );
-    const token = localStorage.getItem("token");
+        // );
+        const token = localStorage.getItem("token");
 
 const response = await axios.get(
   `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
@@ -41,16 +28,14 @@ const response = await axios.get(
     },
   }
 );
-    toast.success(response.data.message);
-    setIsAuthorized(false);
-    setUser(null);
-    navigateTo("/login");
-  } catch (error) {
-    toast.error(error?.response?.data?.message || "Logout failed");
-    setIsAuthorized(false);
-    setUser(null);
-  }
-};
+        toast.success(response.data.message);
+        setIsAuthorized(false);
+        navigateTo("/login");
+      } catch (error) {
+        toast.error(error.response.data.message), setIsAuthorized(true);
+      }
+    };
+  
 
 
     return (
