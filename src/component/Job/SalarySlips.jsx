@@ -101,6 +101,7 @@ const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slip
     // await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
     //   withCredentials: true, // if your backend requires cookies/auth
     // });
+    const token = localStorage.getItem("token");
      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips/${id}`, {
   headers: { Authorization: `Bearer ${token}` }
 });
