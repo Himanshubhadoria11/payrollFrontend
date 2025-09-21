@@ -39,27 +39,59 @@ const res = await axios.get(
       }
     };
 
-    const fetchExpenses = async () => {
-      try {
-         const token = localStorage.getItem("token");
+//     const fetchExpenses = async () => {
+//       try {
+//          const token = localStorage.getItem("token");
 
-const res = await axios.get(
-  `${import.meta.env.VITE_API_BASE_URL}/api/expenses`,
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
-       // const res = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
-        setExpenses(Array.isArray(res.data) ? res.data : []);
-      } catch (err) {
-        console.error("Failed to fetch expenses:", err);
-        setExpenses([]);
-      } finally {
-        setLoadingExpenses(false);
+// const res = await axios.get(
+//   `${import.meta.env.VITE_API_BASE_URL}/api/expenses`,
+//   {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }
+// );
+//        // const res = await axios.get( `${import.meta.env.VITE_API_BASE_URL}/api/expenses`, { withCredentials: true });
+//         setExpenses(Array.isArray(res.data) ? res.data : []);
+//       } catch (err) {
+//         console.error("Failed to fetch expenses:", err);
+//         setExpenses([]);
+//       } finally {
+//         setLoadingExpenses(false);
+//       }
+//     };
+const fetchExpenses = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.log("No token found. Redirecting to login...");
+      return window.location.href = "/login";
+    }
+
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/api/expenses`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        // Uncomment if backend uses cookies instead:
+        // withCredentials: true
       }
-    };
+    );
+
+    setExpenses(Array.isArray(res.data) ? res.data : []);
+  } catch (err) {
+    console.error("Failed to fetch expenses:", err);
+    if (err.response?.status === 401) {
+      // Token expired or invalid
+      window.location.href = "/login";
+    }
+    setExpenses([]);
+  } finally {
+    setLoadingExpenses(false);
+  }
+};
 
     fetchSalarySlips();
     fetchExpenses();
