@@ -152,15 +152,9 @@ try {
 </section>  
 
 
-   
-
-  
-
-
-
-
 
   );
+}
 }
 
 export default Register;
