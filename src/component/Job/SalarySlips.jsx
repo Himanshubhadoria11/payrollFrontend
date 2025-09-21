@@ -19,9 +19,13 @@ export default function SalarySlips() {
   // Fetch all salary slips
   const fetchSlips = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, {
-        withCredentials: true,
-      });
+      // const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, {
+      //   withCredentials: true,
+      // });
+       const token = localStorage.getItem("token");
+const res= await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/salary-slips`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
       setSlips(res.data);
     } catch (err) {
       console.error("Error fetching slips:", err);
